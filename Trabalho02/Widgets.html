@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Widgets</title>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    <style media="screen">
+      #accordion{
+        width: 400px;
+        background-color: #eee;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Só agradece </h1>
+    <div id="accordion">
+      <h3>Estrofe 1</h3>
+      <div>
+        <p>
+          Só agradece a esse dia que foi dado <br/>
+          Agradece à natureza e o cuidado <br/>
+          Agradece, novo dia, nova chance de recomeçar <br/>
+          Graças te damos pela vida <br/>
+          Pela oportunidade de cantar e ser ouvida <br/>
+          Graças te damos pelo amor <br/>
+        </p>
+      </div>
+      <h3>Estrofe 2</h3>
+      <div>
+        <p>
+          Esperança que inspira, a luta contra o opressor <br/>
+          Amarelou oi, janela abriu e o sol entrou <br/>
+          Trazendo vida, inspiração, luz que foi jah jah quem mandou <br/>
+          Ingratidão, desenvolve a missão <br/>
+          Dá de cara com o sistema que te julga e não te dá opção <br/>
+          Não tem progresso sem acesso <br/>
+          Pense no gueto e é isso que eu te peço <br/>
+          A quebrada produz, e é de qualidade <br/>
+          Em agradecimento faz a arte da realidade <br/>
+        </p>
+      </div>
+      <h3>Estrofe 3</h3>
+      <div>
+        <p>
+          Damos graças e louvores, agradecemos independente das dores <br/>
+          Só agradece a esse dia que foi dado <br/>
+          Agradece à natureza e o cuidado <br/>
+          Agradece, novo dia, nova chance de recomeçar <br/>
+          Amarelou, janela abriu e o sol entrou <br/>
+          Trazendo vida, inspiração, luz que foi Jah Jah quem mandou <br/>
+        </p>
+        <ul>
+          <li>Estrofe 1</li>
+          <li>Estrofe 2</li>
+          <li>Estrofe 3</li>
+        </ul>
+      </div>
+      <h3>Estrofe 4</h3>
+      <div>
+        <p>
+          Ingratidão, desenvolve a missão <br/>
+          Dá de cara com o sistema que te julga e não te dá opção <br/>
+          Não tem progresso sem acesso <br/>
+          Pense no gueto e é isso que eu te peço <br/>
+          A quebrada produz, e é de qualidade <br/>
+          Em agradecimento faz a arte da maloqueiragem <br/>
+          Damos graças e louvores, agradecemos independente das dores <br/>
+        </p>
+        <p>
+          Só agradece a esse dia que foi dado <br/>
+          Agradece à natureza e o cuidado <br/>
+          Agradece, novo dia, nova chance de recomeçar <br/>
+        </p>
+      </div>
+    </div>
+      <p>
+        Data de lançamento da música: <input type="text" id="data">
+      </p>
+  <script>
+      // acordeon
+      $( function() {
+      $( "#accordion" ).accordion();
+      });
+    //acordeon
+
+    //datepicker
+    $( function() {
+      $( "#data" ).datepicker();
+    });
+  </script>
+  </body>
+</html>

@@ -1,0 +1,130 @@
+*{
+  padding: 0;
+  margin: 0;
+  font-family: Helvetica;
+  color: white;
+}
+.cabecalho, .publicacoes{
+  max-width:900px;
+  margin: auto;
+}
+.cabecalho{
+  height: auto;
+  background-color: white;
+  border-radius: 0.5vw;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+}
+#logo{
+  width: 89.75px;
+  margin: 5.61px;
+}
+.cabecalho > button{
+  width: 93px;
+  height: 44.88px;
+  margin: 5.61px;
+  background-color: #E88127;
+  float: right;
+  font-size: 0.7rem;
+  cursor: pointer;
+  border-radius: 1vw;
+}
+.modal > form{
+  width: auto;
+  height: auto;
+  padding: 10px;
+  margin: 0% 30%;
+  background-color: #E88127;
+  display: none;
+  position: absolute;
+  border-radius: 5px;
+}
+.modal > form > p{
+  float: right;
+  text-align: right;
+  cursor: pointer;
+}
+.resposta{
+  color: black;
+  resize: none;
+}
+#submit{
+  color: black;
+  width: 90px;
+}
+.post{
+  background-color: #E88127;
+  height: auto;
+  width: 800px;
+  margin: auto;
+  margin-top: 10px;
+  padding: 10px;
+  border-radius: 10px;
+  overflow: auto;
+}
+.nome{
+  font-size: 0.9rem;
+}
+.data{
+  color: #8c4e19;
+  font-size: 0.9rem;
+  float: right;
+}
+.modalaberto{
+  background-color: rgba(0, 0, 0, 0.7);
+  width: 100%;
+  height: 100%;
+  margin: auto;
+  position: absolute;
+  display: none;
+  animation: transicao;
+  animation-duration: 300ms;
+}
+.sempublicacao{
+  text-align: center;
+}
+@keyframes transicao {
+  0%{
+    opacity: 0;
+  }
+  100%{
+    opacity: 1;
+  }
+}
+@media screen and (max-width: 899px) {
+  .cabecalho, .publicacoes{
+    width:100vw;
+  }
+  .cabecalho{
+    border-radius: 0.5vw;
+  }
+  #logo{
+    width: 10vw;
+    margin: 0.7vw;;
+  }
+  .cabecalho > button{
+    width: 10.5vw;
+    height: 5vw;
+    margin: 0.7vw;
+    font-size: 0.7rem;
+    border-radius: 1vw;
+  }
+  .modal > form{
+    padding: 1vw;
+    margin: 0vw 20vw;
+    border-radius: 5px;
+  }
+  #submit{
+    width: 10vw;
+  }
+  .post{
+    width:90vw ;
+    margin-top: 10px;
+    padding: 10px;
+  }
+  .nome, .data{
+    font-size: 0.9rem;
+  }
+  .modalaberto{
+    width: 100%;
+    height: 100%;
+  }

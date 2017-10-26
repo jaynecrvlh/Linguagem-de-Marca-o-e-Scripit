@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <script src = "jquery-3.1.1.min.js"></script>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <script src="js/bootstrap.min.js"></script>
+    <title></title>
+    <style media="screen">
+      *{
+        font-family: cursive;
+        text-decoration: none;
+      }
+      nav{
+        width: auto;
+        overflow: auto;
+        background-color: rgba(168, 10, 100, 0.84);
+        font-size: 17px;
+      }
+      a{
+        color: black;
+      }
+      .navbar-brand{
+        font-size: 20px;
+      }
+      #cadastrar, #entrar, #usuario, #carrinho, #usuarioL, #sair{
+        padding: 2px;
+        float: right;
+      }
+      #carrinho{
+        cursor: pointer;
+      }
+      #usuarioL, #carrinho, #sair{
+        padding: 5px;
+        display: none;
+      }
+      #usuarioL, #carrinho{
+        margin-top: 10px;
+      }
+      .row{
+        width: 1345px;
+      }
+      .col-sm-3{
+        border: dashed 5px rgb(185, 19, 74);
+        height: 450px;
+        overflow: auto;
+        margin: 50px;
+      }
+      img{
+        height: 300px;
+      }
+      .irPcarrinho, .qtdG{
+        margin-left: 40px;
+        display: none;
+      }
+      #qtd{
+        width: 40px;
+      }
+      #preco, #nomeP{
+        margin-left: 30px;
+        width: 230px;
+        display: block;
+        border: none;
+        background-color: transparent;
+      }
+      #preco{
+        font-size: 45px;
+      }
+      #nomeP{
+        font-size: 20px;
+        left: 10%;
+        position: relative;
+      }
+      #erroC, #erroE{
+        color: red;
+      }
+      .dropdow{
+        margin-left: 81%;
+        margin-top: -20px;
+        background-color: #d1d1d1;
+        border-radius: 2px;
+        position: absolute;
+
+      }
+      #cVazio, #finalizar{
+        font-size: 20px;
+        padding: 4px;
+      }
+      #finalizar{
+        margin-left: 20px;
+        display: none;
+      }
+      #cVazio{
+        color: #868686;
+        display: none;
+      }
+      #alertaS{
+        position: absolute;
+        margin-left: 40%;
+        display: none;
+      }
+    </style>
+    </head>
+
+  <body>
+    <nav class="navbar navbar">
+      <div class="container">
+        <div class="navbar-header">
+          <a href="#" class="navbar-brand">
+            Milena França
+          </a>
+        </div>
+        <ul class="nav navbar-nav">
+          <li id="loja"><a href="#">Produtos</a></li>
+          <li id="produtos"><a href="#">Meus produtos</a></li>
+        </ul>
+        <ul class="nav navbar-nav-right">
+          <li id="cadastrar" data-toggle ="modal" data-target ="#modalCadastrar"><a href="#">Cadastrar</a></li>
+          <li id="entrar" data-toggle="modal" data-target="#modalEntrar"><a href="#">Entrar</a></li>
+          <li id="sair"><a href="#">Sair</a></li>
+          <li id="carrinho" ><i class="glyphicon glyphicon-shopping-cart"></i></li>
+          <li><span id="usuarioL"></span></li>
+        </ul>
+      </div>
+    </nav>
+    <div class="dropdow">
+      <span id="cVazio">Carrinho vazio</span><br/>
+      <button type="button" class="btn btn success" id="finalizar">Finalizar</button>
+    </div>
+    <div id="alertaS" class="alert alert-success ">Usuário cadastrado com sucesso!</div>
+    <div class="modalC">
+      <div id="modalCadastrar"class="modal fade" role="dialog">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <span class="close" data-dismiss="modal">&times;</span>
+              <h3>Cadastro</h3>
+            </div>
+            <div class="modal-body">
+              <span id="erroC"></span>
+              <h4>Nome</h4>
+               <input type="text" class="form-control" id="nome" placeholder="Usuario">
+               <h4>Sobrenome</h4>
+                <input type="text" class="form-control" id="sobrenome" placeholder="Silva">
+                <h4>Usuario</h4>
+                 <input type="text" class="form-control" id="usuarioC" placeholder="usuario123">
+                <h4>Senha</h4>
+                  <input type="password" class="form-control" id="senhaC" placeholder="senha">
+            </div>
+            <div class="modal-footer">
+              <button id="botaocadastrar"class="btn btn-default "type="submit" name="cadastrar"> Cadastrar </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modalE">
+      <div id="modalEntrar" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <span class="close" data-dismiss="modal">&times;</span>
+              <h3>Entrar</h3>
+            </div>
+            <div class="modal-body">
+                <span id="erroE"></span>
+                <h4>Usuario</h4>
+                  <input type="text" class="form-control" id="usuarioE" placeholder="usuario123">
+                <h4>Senha</h4>
+                  <input type="password" class="form-control" id="senhaE" placeholder="senha">
+            </div>
+            <div class="modal-footer">
+              <button id="submit"class="btn btn-default "type="submit" name="Entrar"> Entrar </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-3">
+          <input type="text" name="P1" value="Vestido: Manga única" disabled="" id="nomeP">
+          <img src="6.jpg" alt="" />
+          <input id="preco" type="text" name="name" value="R$ 300,00" disabled="R$ 300,00">
+          <button class="irPcarrinho"class="btn btn-default "type="submit" name="Entrar"><span class="glyphicon glyphicon-shopping-cart"></span></button>
+          <span class="qtdG">Quantidade: <input id="qtd" type="number" name="quantidade" value="0" min="0" ></span>
+        </div>
+        <div class="col-sm-3">
+          <input type="text" name="P2" value="Vestido: Saia rodada" disabled="" id="nomeP">
+          <img src="2.jpg" alt="" />
+          <input id="preco" type="text" name="name" value="R$ 300,00" disabled="R$ 300,00">
+          <button class="irPcarrinho"class="btn btn-default "type="submit" name="Entrar"><span class="glyphicon glyphicon-shopping-cart"></span></button>
+          <span class="qtdG">Quantidade: <input id="qtd" type="number" name="quantidade" value="0" min="0" ></span>
+        </div>
+        <div class="col-sm-3">
+          <input type="text" name="P3" value="Vestido: Detalhes ouro" disabled="" id="nomeP">
+          <img src="4.jpg" alt="" />
+          <input id="preco" type="text" name="name" value="R$ 300,00" disabled="R$ 300,00">
+          <button class="irPcarrinho"class="btn btn-default "type="submit" name="Entrar"><span class="glyphicon glyphicon-shopping-cart"></span></button>
+          <span class="qtdG">Quantidade: <input id="qtd" type="number" name="quantidade" value="0" min="0" ></span>
+        </div>
+        <div class="row">
+          <div class="col-sm-3">
+            <input type="text" name="P4" value="Vestido: Manga dupla" disabled="" id="nomeP">
+            <img src="7.jpg" alt="" />
+            <input id="preco" type="text" name="name" value="R$ 300,00" disabled="R$ 300,00">
+            <button class="irPcarrinho"class="btn btn-default "type="submit" name="Entrar"><span class="glyphicon glyphicon-shopping-cart"></span></button>
+            <span class="qtdG">Quantidade: <input id="qtd" type="number" name="quantidade" value="0" min="0" ></span>
+          </div>
+          <div class="col-sm-3">
+            <input type="text" name="P5" value="Vestido: Estilo tubinho" disabled="" id="nomeP">
+            <img src="8.jpg" alt="" />
+            <input id="preco" type="text" name="name" value="R$ 300,00" disabled="R$ 300,00">
+            <button class="irPcarrinho"class="btn btn-default "type="submit" name="Entrar"><span class="glyphicon glyphicon-shopping-cart"></span></button>
+            <span class="qtdG">Quantidade: <input id="qtd" type="number" name="quantidade" value="0" min="0" ></span>
+          </div>
+          <div class="col-sm-3">
+            <input type="text" name="P6" value="Vestido: Sem mangas" disabled="" id="nomeP">
+            <img src="1.jpg" alt="" />
+            <input id="preco" type="text" name="name" value="R$ 300,00" disabled="R$ 300,00">
+            <button class="irPcarrinho"class="btn btn-default "type="submit" name="Entrar"><span class="glyphicon glyphicon-shopping-cart"></span></button>
+            <span class="qtdG">Quantidade: <input id="qtd" type="number" name="quantidade" value="0" min="0" ></span>
+          </div>
+
+      </div>
+    </div>
+    <script type="text/javascript">
+      $(function(){
+        if (localStorage.length === 3) {
+          $(".modal-backdrop").fadeOut();
+          $(".modalE").hide();
+          $("#cadastrar").hide();
+          $("#entrar").hide();
+          $("#carrinho").show();
+          $("#usuarioL").show();
+          $(".qtdG").show();
+          $(".irPcarrinho").show();
+          $("#sair").show();
+          $("#usuarioL").html(localStorage.usuario);
+          $("#carrinho").click(function(){
+            $("#cVazio").toggle();
+          })
+        }
+          console.log(localStorage.length);
+
+
+        $("#sair").click(function(){
+          localStorage.clear();
+          location.reload();
+        })
+        $("#botaocadastrar").click(function(){
+          event.preventDefault();
+          var usuario = $("#usuarioC").val();
+          var senha = $("#senhaC").val();
+          $("#usuarioC").val("");
+          $("#senhaC").val("");
+          console.log(usuario);
+          $.ajax({
+            type:"GET",
+            url: "http://rest.learncode.academy/api/jayne/triste2",
+            success: function(data){
+              idU = data.length;
+              console.log("mostar id");
+              console.log(idU);
+              console.log(data.length);
+              for(var i =0; i < data.length; i+= 1){
+                if(usuario==data[i].usuario){
+                    console.log("ja cadastrado");
+                    $("#erroC").text("O usuário já existe!");
+                    return;
+                  }
+                }
+                $.ajax({
+                  type: "POST",
+                  url:"http://rest.learncode.academy/api/jayne/triste2",
+                  data: {"usuario": usuario, "senha": senha, "idU": idU},
+                  success: function(data){
+                    $(".modal-backdrop").fadeOut();
+                    $(".modalC").hide();
+                    $("#nome").val("");
+                    $("#sobrenome").val("");
+                    $("#usuarioC").val("");
+                    $("#senhaC").val("");
+                    return;
+                  }
+                });
+              }
+            })
+          });
+          var recebe;
+          $("#submit").click(function(){
+            event.preventDefault();
+            var usuario = $("#usuarioE").val();
+            var senha = $("#senhaE").val();
+            console.log(usuario);
+            console.log(senha);
+
+            $.ajax({
+              type:"GET",
+              url: "http://rest.learncode.academy/api/jayne/triste2",
+              success: function(data){
+                recebe = data;
+                for(var i =0; i < recebe.length; i+= 1){
+                  if(usuario==recebe[i].usuario && senha==recebe[i].senha){
+                      console.log("certo");
+                      $("body").removeClass("modal-open");
+                      $(".modal-backdrop").fadeOut();
+                      $(".modalE").hide();
+                      $("#usuarioE").val("");
+                      $("senhaE").val("");
+                      $("#cadastrar").hide();
+                      $("#entrar").hide();
+                      $("#carrinho").show();
+                      $("#usuarioL").show();
+                      $(".qtdG").show();
+                      $(".irPcarrinho").show();
+                      $("#sair").show();
+                      localStorage.usuario = recebe[i].usuario;
+                      localStorage.senha = recebe[i].senha;
+                      localStorage.idU = recebe[i].idU;
+                      $("#usuarioL").html(localStorage.usuario);
+                      return
+                  }
+                };
+                $("#erroE").text("Usuário ou senha incorretos!");
+                $("#usuarioE").val("");
+                $("#senhaE").val("");
+
+            }
+          });
+        });
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="estilo.css">
+    <link rel="icon" href="favicon.png" type="image"/>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <title>Cookery</title>
+  </head>
+  <body>
+    <div class="modalaberto"></div>
+    <header class="cabecalho">
+      <img id="logo" src="culinaria.png"/>
+      <button type="button" name="novopost" id="abrirForms"><b> NOVA RECEITA</b></button>
+      <button type="button" name="atualizar" id="atualizar"><b> ATUALIZAR</b></button>
+    </header>
+    <div class="modal">
+      <form class="formulario" id= "formulario"action="" method="post">
+        <p id="fecharForms">X</p>
+        Seu nome:<br/>
+        <input type="text" name="nome" class="resposta"><br/>
+        Nome da receita<br/>
+        <input type="text" name="receita" class="resposta"><br/>
+        Ingredientes:<br/>
+        <textarea name="ingredientes" rows="10" cols="70" class="resposta"></textarea><br/>
+        Modo de Preparo:<br/>
+        <textarea name="preparo" rows="10" cols="70" class="resposta"></textarea><br/>
+        <input type="submit" value="Postar" id="submit"; >
+      </form>
+    </div>
+    <div class="publicacoes" id="pu">
+
+    </div>
+    <script>
+      resposta();
+
+      var modal = document.getElementById('formulario');
+      var fechar = document.getElementById("fecharForms");
+      var submite = document.getElementById('submeter')
+      var botao = document.getElementById("abrirForms");
+      var modalaberto = document.getElementsByClassName("modalaberto")[0];
+      var body = document.body;
+      var subtmit = document.getElementById("submit");
+      var atualizar = document.getElementById("atualizar");
+
+      function abrirModal(){
+        modal.style.display = "block";
+        modalaberto.style.display = "block";
+        body.style.overflow = "hidden";
+
+      }
+
+      function fecharModal(){
+        modal.style.display = "none";
+        modalaberto.style.display = "none";
+        body.style.overflow = "auto";
+
+      }
+
+      botao.onclick = abrirModal;
+      fechar.onclick = fecharModal;
+
+      function submit(){
+        event.preventDefault();
+
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function(){
+          if(this.readyState==4 && this.status==200){
+            document.forms["formulario"]["nome"].value = "";
+            document.forms["formulario"]["receita"].value = "";
+            document.forms["formulario"]["ingredientes"].value = "";
+            document.forms["formulario"]["preparo"].value = "";
+          }
+        }
+        var novadata = gerarData();
+        xhttp.open("POST","http://rest.learncode.academy/api/jayne/trabalhos",true);
+        xhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+        var body = "name=" + document.forms["formulario"]["nome"].value + "&receita=" + document.forms["formulario"]["receita"].value
+        + "&ingredientes=" + document.forms["formulario"]["ingredientes"].value + "&preparo=" + document.forms["formulario"]["preparo"].value
+        + "&data=" + novadata;
+        xhttp.send(body);
+        fecharModal();
+      }
+      document.forms["formulario"].addEventListener("submit",submit);
+
+      function gerarData(){
+        var diasemana =["Domingo", "Segunda-feira", "Terça-feira", "Quarta-feira", "Quinta-feira", "Sexta-feira", "Sábado"];
+        var mes = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
+        var data = new Date;
+        var dia = data.getDate();
+        var hora = data.getHours();
+        var min = data.getMinutes();
+        if (dia < 10) {
+          dia = "0" + dia;
+        }
+        if(hora < 10){
+          hora = "0" + hora;
+        }
+        if (min < 10) {
+          min = "0" + min;
+        }
+        return(diasemana[data.getDay()] + ", " + dia + " de " + mes[data.getMonth()] + " de " + data.getFullYear() + " às " + hora + ":" + min);
+      }
+      function resposta(){
+        var http = new XMLHttpRequest();
+        http.open("GET", "http://rest.learncode.academy/api/jayne/trabalhos", true);
+        http.send();
+        http.onreadystatechange = function(){
+          if (this.readyState == 4 && this.status == 200){
+            var json = this.responseText;
+            var posts = JSON.parse(json);
+            mostrarResposta(posts);
+          }
+        }
+      }
+      function mostrarResposta(posts){
+        if(posts.length == 0 ){
+          var post = document.createElement("div");
+          post.className = "post";
+          var texto = document.createElement("div");
+          texto.className = "sempublicacao";
+          texto.innerHTML = "Ainda não há receitas!";
+          post.appendChild(texto);
+          document.getElementsByClassName("publicacoes")[0].appendChild(post);
+          return;
+        }
+        for (var i = posts.length - 1 ; i >= 0 ; i--){
+          var post = document.createElement("div");
+          post.className = "post";
+          var receita = document.createElement("h2");
+          receita.className = "receita";
+          var nome = document.createElement("div");
+          nome.className = "nome";
+          var data = document.createElement("span");
+          data.className = "data";
+          var ingredientes = document.createElement("div");
+          ingredientes.className = "ingredientes";
+          var preparo = document.createElement("div");
+          var negrito1 = document.createElement("b");
+          var negrito2 = document.createElement("b")
+          var ing = document.createTextNode("Ingredientes:");
+          var modopreparo = document.createTextNode("Modo de prepado:");
+
+          preparo.className = "preparo";
+          receita.innerHTML = posts[i].receita;
+          nome.innerHTML = posts[i].name;
+          data.innerHTML = posts[i].data;
+          ingredientes.innerHTML = posts[i].ingredientes;
+          preparo.innerHTML = posts[i].preparo;
+
+          preparo.appendChild(data);
+          negrito1.appendChild(ing);
+          negrito2.appendChild(modopreparo);
+          post.appendChild(receita);
+          post.appendChild(nome);
+          post.appendChild(negrito1);
+          post.appendChild(ingredientes);
+          post.appendChild(negrito2);
+          post.appendChild(preparo);
+          document.getElementsByClassName("publicacoes")[0].appendChild(post);
+        }
+      }
+      atualizar.onclick = function atualizar(){
+        document.getElementsByClassName("publicacoes")[0].innerHTML = "";
+        resposta();
+      }
+      $( function() {
+      $( "#pu" ).sortable();
+      $( "#pu" ).disableSelection();
+    } );
+    </script>
+  </body>
+</html>

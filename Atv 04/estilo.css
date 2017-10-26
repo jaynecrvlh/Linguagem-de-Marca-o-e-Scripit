@@ -1,0 +1,97 @@
+.cabecalho{
+  padding: 25px;
+}
+.logo{
+  font-family:Handel Gothic BT;
+  font-size: 37px;
+  text-decoration: none;
+  line-height: 1px;
+  color: #5555555;
+  display: block;
+  position: absolute;
+  margin-top: 13px;
+  margin-left: -5px;
+}
+.logo .dotcom{color:rgb(76, 175, 80);}
+.slogan{
+  position: relative;
+  font-family: Segoe UI;
+  font-size: 15px;
+  letter-spacing: 4px;
+  top: 10px;
+}
+@font-face {
+  font-family: "Handel Gothic BT";
+  src: url("Handel-Gothic-BT.ttf") format("truetype");
+}
+*{
+  margin: 0;
+  padding: 0;
+}
+.horizontal{
+  overflow: auto;
+  background-color: rgb(76, 175, 80);
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+  position: relative;
+  z-index: 1;
+}
+.horizontal ul{
+  list-style: none;
+}
+.horizontal ul li{
+  float: left;
+}
+.horizontal ul li a{
+  display: block;
+  color: white;
+  text-decoration: none;
+  font-family: "Segoe UI",Arial,sans-serif;
+  font-size: 17px;
+  text-align: left;
+  letter-spacing: 4px;
+  padding: 17px;
+}
+.horizontal ul li a:hover{
+  background-color: white;
+  color: black;
+}
+
+h4{
+  font-family: "Segoe UI", Arial, sans-serif;
+  font-size: 20px;
+  font-weight: normal;
+  margin-bottom: 10px;
+  margin-left: 0px;
+  margin-right: 0px;
+  margin-top: 10px
+  padding-bottom:0.15px;
+  padding-left: 16px;
+  padding-right: 16px;
+  padding-top: 8px;
+}
+.vertical{
+  background-color: #FFF;
+  float: left;
+  width: 16%;
+  height: auto;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+}
+.vertical ul{
+  list-style-type: none;
+}
+.vertical ul li a{
+  color: rgb(0, 0, 0);
+  box-sizing: border-box
+  padding-bottom: 0px;
+  padding-left: 16px;
+  padding-right: 16px;
+  padding-top: 0px;
+  color: #444444;
+  display: block;
+  text-decoration: none;
+  font-family: "Verdana";
+  font-size: 16px;
+}
+.vertical ul li a:hover{
+  background-color: #CCC;
+}

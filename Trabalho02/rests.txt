@@ -1,0 +1,7 @@
+http://rest.learncode.academy/api/jayne/trabalhos
+http://rest.learncode.academy/api/jayne/post
+http://rest.learncode.academy/api/jayne/vdc
+http://rest.learncode.academy/api/jayne/trabalho
+http://rest.learncode.academy/api/jayne/trabalhos2
+
+http://rest.learncode.academy/api/jayne/trabalhoII
